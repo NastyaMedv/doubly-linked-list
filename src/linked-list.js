@@ -21,6 +21,8 @@ class LinkedList {
           }
 
       this.length++;
+
+      return this;
     }
 
     head() {
@@ -46,8 +48,24 @@ class LinkedList {
     insertAt(index, data) {
       if (index > this.length) return null;
 
-      let prevNode = this._head;
       let node = new Node(data);
+
+      if (index == 0) {
+        if (this._head == null) {
+          this._head = node;
+          this._tail = node;
+          } else {
+            node.next = this._head;
+            this._head.prev = node;
+            this._head = node;
+            }
+
+        this.length++;
+
+        return this;
+      }
+
+      let prevNode = this._head;
 
       for (let i=1; i<index; i++) {
         prevNode = prevNode.next;
@@ -64,6 +82,8 @@ class LinkedList {
       prevNode.next = node;
 
       this.length++;
+
+      return this;
     }
 
     isEmpty() {
@@ -74,6 +94,8 @@ class LinkedList {
       this._head =  null;
       this._tail = null;
       this.length = 0;
+
+      return this;
     }
 
     deleteAt(index) {
@@ -91,6 +113,8 @@ class LinkedList {
         else this._tail = node.prev;
 
       this.length--;
+
+      return this;
     }
 
     reverse() {
@@ -106,6 +130,8 @@ class LinkedList {
       let temp = this._head;
       this._head = this._tail;
       this._tail = temp;
+
+      return this;
     }
 
     indexOf(data) {
