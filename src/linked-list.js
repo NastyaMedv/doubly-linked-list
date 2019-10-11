@@ -93,7 +93,20 @@ class LinkedList {
       this.length--;
     }
 
-    reverse() {}
+    reverse() {
+      let node = this._head;
+
+      while (node) {
+        let temp = node.next;
+        node.next = node.prev;
+        node.prev = temp;
+        node = node.prev;
+      }
+
+      let temp = this._head;
+      this._head = this._tail;
+      this._tail = temp;
+    }
 
     indexOf(data) {
       let node = this._head, i = 0;
